@@ -8,18 +8,21 @@
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         
     </head>
-    <body style="background-color:  #666; color:white; ">
+    <body style="background-color:  #9932CC; color:white; ">
 
         <div class="container" id="principal">
             <div class ="row">
-                <div class="col-12">
-                    <h2 class="text-center" style="color:white;">EJEMPLO DE INICIO SESIÓN EN PHP</h2> 
+                <div id="banner" class="col-12">
+                    <p><a class="btn btn-block btn-dark disabled" style="color: white" >Bienvenido al Trivial De La Evau 2018</a></p>
+                </div>
+                <div id="botonLogin" class="col-12" style="margin-left: 35%">
+                    <button onclick="require()" style="background-color:#9932CC"><img src="homer.png"></button>
                 </div>
             </div>
             <div class ="row">
                 <div class="col-4">
                 </div>
-                <div class="col-4">
+                <div id="login" class="col-4">
                     <br/><br/>
                         <input id ="cajaNombre" class="form-control" type="text" placeholder="Usuario" required="required">
                         <br/>
@@ -40,11 +43,17 @@
          // document ready se ejecuta cuando toda la página se ha cargado correctamente
         $(document).ready(function(){
             //$('#cajaNombre').hide();
+            $('#login').hide();
         });
         
         $.validate({
           lang: 'es'
          });
+         
+         //Mostrar login pulsando a homer
+         if($('#botonLogin').click(function)){
+             $('#login').show();
+         }
          
         $('#boton1').click(function(){
             //leo el contenido de las cajas de nombre y contraseña
