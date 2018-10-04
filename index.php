@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
         <title>PRUEBA DE PHP CON BOOTSTRAP</title>
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/CSS.css" rel="stylesheet" type="text/css"/>
         
     </head>
     <body style="background-color:  #9932CC; color:white; ">
@@ -13,10 +14,11 @@
         <div class="container" id="principal">
             <div class ="row">
                 <div id="banner" class="col-12">
-                    <p><a class="btn btn-block btn-dark disabled" style="color: white" >Bienvenido al Trivial De La Evau 2018</a></p>
+                    <p><a class="btn btn-block btn-info disabled" style="color: white" >Bienvenido al Trivial De La Evau 2018</a></p>
                 </div>
-                <div id="botonLogin" class="col-12" style="margin-left: 35%">
-                    <button onclick="require()" style="background-color:#9932CC"><img src="homer.png"></button>
+                <div id="botonLogin" class="col-9">
+                    <button onclick="require()" style="background-color:#9932CC" ><img src="homer.png"></button>
+                    <h1 id="enunciadoRegistro">HAZ CLICK PARA REGISTRARTE</h1>
                 </div>
             </div>
             <div class ="row">
@@ -52,7 +54,7 @@
          
          //Mostrar login pulsando a homer
          if($('#botonLogin').click(function)){
-             $('#login').show();
+             $('')
          }
          
         $('#boton1').click(function(){
