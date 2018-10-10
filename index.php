@@ -18,7 +18,7 @@
                 </div>
                 <div id="botonLogin" class="col-9">
                     <button onclick="showModalDialog()" style="background-color:#9932CC" ><img src="homer.png"></button>
-                    <h1 id="enunciadoRegistro">HAZ CLICK PARA REGISTRARTE</h1>
+                    <h1 id="enunciadoRegistro">HAZ CLICK PARA LOGEARTE</h1>
                 </div>
             </div>
             <div class ="row">
