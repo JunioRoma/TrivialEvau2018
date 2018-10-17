@@ -21,7 +21,6 @@ $form_pass = $_POST['userPass'];
 $hash = password_hash($form_pass, userPass);
 
 
-
 $conexion = new mysqli($host_db, $user_db, $pass_db, $db_name);
 
 
@@ -71,7 +70,7 @@ if ($count == 1) {
 
         echo "<h4>" . "Bienvenido: " . $_POST['nombreUsuario'] . "</h4>" . "\n\n";
 
-        echo "<h5>" . "Hacer Login: " . "<a href='login.'>app.php</a>" . "</h5>";
+        echo "<a href='app.php'>";
     } else {
 
         echo "Error al crear el usuario." . $query . "<br>" . $conexion->error;

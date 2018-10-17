@@ -1,66 +1,67 @@
+
 <!DOCTYPE html>
 
-<html lang="en">
-
-
-
+<html>
     <head>
-
-        <title>Registrar Usuario</title>
-
-        <meta charset = "utf-8">
-
-    </head>
-
-
-
-    <body>
-
-
-
-        <header>
-            <h1>Registrate en nuestro fabuloso website:</h1>
-
-        </header>
-
-
-
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+        <title>REGISTRATE PARA ENTRAR</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="css/CSS.css" rel="stylesheet" type="text/css"/>
         <form action="registro-usuario.php" method="post"> 
+    </head>
+    <body style="background-color:  #9932CC; color:white; ">
+
+
+        <div id="cabecera" style="width: 100%; height: 15%">
+
+
+            <div style="height: 50%; width:25%; float: left; margin: 0.5%">
+                <div id="logo"> <p><a><img src="homer.png" alt="pensar" style="width:50%"></a></p></div>
+            </div>
+
+            <div style=" overflow: hidden; width: 52.4%; float: left; margin: 0.5%;" >
+                <div id="banner"><a class="btn btn-block btn-danger">BIENVENIDOS AL TRIVIAL DE LA EVAU2018</a></div>
+            </div>
+
+            <div style="float: right; margin: 0.5%; width: 10%;">
+                <div id="registro"> <a class="btn btn-block btn-dark"><img src="registro.png" alt="pensar" style="width:10%;"></a></div>
+            </div>
+
+
+        </div>
 
 
 
-            <hr />
-
-            <h3>Crea una cuenta</h3>
-
-
-
-            <!--Nombre Usuario-->
-
-            <label for="nombre">Nombre de Usuario:</label><br>
-
-            <input type="text" name="nombreUsuario" maxlength="32" required>
-
-            <br/><br/>
-
-
-
-            <!--Password-->
-
-            <label for="pass">Password:</label><br>
-
-            <input type="password" name="userPass" maxlength="8" required>
-
-            <br/><br/>
-
-            <input type="submit" name="submit" value="Registrarme">
-            <input type="reset" name="clear" value="Borrar">
-
-        </form>
-
-
-    </footer>
-
-</body>
+        <div class="container" id="principal" style="clear: both;">
+            <br>
+            <br>
+            <br>
+            <div class ="row">
+                <div class="col-12">
+                    <h2 class="text-center" style="color:white;">Bienvenidos</h2> 
+                </div>
+            </div>
+            <div class ="row">
+                <div class="col-4">
+                </div>
+                <div class="col-4">
+                    <br/><br/>
+                    <input name="nombreUsuario"  class="form-control" type="text" placeholder="Usuario" required="required" style="text-align: center">
+                    <br/>
+                    <input name="userPass" class="form-control" type="password" placeholder="Contraseña" required="required" style="text-align: center">
+                    <br/>
+                    <a href="app.php"><button class="btn btn-primary btn-block" type="submit" name="submit">REGISTRATE</button></a>
+                    <br/><br/>
+                </div>
+                <div class="col-4">
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
 
 </html>
+
+
