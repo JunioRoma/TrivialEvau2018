@@ -42,7 +42,7 @@ $preguntaActual = rand(0, $numPreguntas - 1);
 
 <script>
     function volver() {
-        $('#principal').load('aplicacion.php');
+        $('#principal').load('app.php');
     }
     //Cargo el array php de preguntas en una variable javascript
     var listaPreguntas = <?php echo json_encode($listaPreguntas); ?>;

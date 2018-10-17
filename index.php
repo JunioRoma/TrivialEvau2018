@@ -7,30 +7,49 @@
         <title>PRUEBA DE PHP CON BOOTSTRAP</title>
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="css/CSS.css" rel="stylesheet" type="text/css"/>
-
     </head>
     <body style="background-color:  #9932CC; color:white; ">
 
-        <div class="container" id="principal">
+
+        <div id="cabecera" style="width: 100%; height: 15%">
+
+
+            <div style="height: 50%; width:25%; float: left; margin: 0.5%">
+                <div id="logo"> <p><a><img src="homer.png" alt="pensar" style="width:50%"></a></p></div>
+            </div>
+
+            <div style=" overflow: hidden; width: 52.4%; float: left; margin: 0.5%;" >
+                <div id="banner"><a class="btn btn-block btn-danger">BIENVENIDOS AL TRIVIAL DE LA EVAU2018</a></div>
+            </div>
+
+            <div style="float: right; margin: 0.5%; width: 10%;">
+                <div id="registro"> <a class="btn btn-block btn-dark"><img src="registro.png" alt="pensar" style="width:10%;"></a></div>
+            </div>
+
+
+        </div>
+
+
+
+        <div class="container" id="principal" style="clear: both;">
+            <br>
+            <br>
+            <br>
             <div class ="row">
-                <div id="banner" class="col-12">
-                    <p><a class="btn btn-block btn-info disabled" style="color: white" >Bienvenido al Trivial De La Evau 2018</a></p>
-                </div>
-                <div id="botonLogin" class="col-9">
-                    <button onclick="showModalDialog()" style="background-color:#9932CC" ><img src="homer.png"></button>
-                    <h1 id="enunciadoRegistro">HAZ CLICK PARA LOGEARTE</h1>
+                <div class="col-12">
+                    <h2 class="text-center" style="color:white;">Bienvenidos</h2> 
                 </div>
             </div>
             <div class ="row">
                 <div class="col-4">
                 </div>
-                <div id="login" class="col-4">
+                <div class="col-4">
                     <br/><br/>
-                    <input id ="cajaNombre" class="form-control" type="text" placeholder="Usuario" required="required">
+                    <input id ="cajaNombre" class="form-control" type="text" placeholder="Usuario" required="required" style="text-align: center">
                     <br/>
-                    <input id ="cajaPassword" class="form-control" type="password" placeholder="Contraseña">
+                    <input id ="cajaPassword" class="form-control" type="password" placeholder="Contraseña" required="required" style="text-align: center">
                     <br/>
-                    <button id="boton1" class="btn btn-primary btn-block" type="submit">Primary</button>
+                    <button id="boton1" class="btn btn-primary btn-block" type="submit">Iniciar Sesión</button>
                     <br/><br/>
                 </div>
                 <div class="col-4">
@@ -42,32 +61,32 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
 
     <script>
-                        // document ready se ejecuta cuando toda la página se ha cargado correctamente
-                        $(document).ready(function () {
-                            //$('#cajaNombre').hide();
+        // document ready se ejecuta cuando toda la página se ha cargado correctamente
+        $(document).ready(function () {
+            //$('#cajaNombre').hide();
 
 //                            $('#login').hide();
 
-                        });
+        });
 
-                        $.validate({
-                            lang: 'es'
-                        });
+        $.validate({
+            lang: 'es'
+        });
 
-                        //Mostrar login pulsando a homer
+        //Mostrar login pulsando a homer
 //                        if ($('#botonLogin').click(function)) {
 //                            $('#login').show();
 //                        }
 
-                        $('#boton1').click(function () {
-                            //leo el contenido de las cajas de nombre y contraseña
-                            var _cajaNombre = $('#cajaNombre').val();
-                            var _cajaPassword = $('#cajaPassword').val();
+        $('#boton1').click(function () {
+            //leo el contenido de las cajas de nombre y contraseña
+            var _cajaNombre = $('#cajaNombre').val();
+            var _cajaPassword = $('#cajaPassword').val();
 
-                            $('#principal').load("login.php", {
-                                cajaNombre: _cajaNombre,
-                                cajaPassword: _cajaPassword
-                            });
-                        });
+            $('#principal').load("login.php", {
+                cajaNombre: _cajaNombre,
+                cajaPassword: _cajaPassword
+            });
+        });
     </script>
 </html>

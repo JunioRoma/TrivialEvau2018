@@ -1,9 +1,7 @@
-
-
 <div id ="menu" style="color:white; ">
     <p></p>
     <p><a  class="btn btn-block btn-dark disabled" >Demuestra que estás listo para la EVAU</a></p>
-    <p><a  class="btn btn-block btn-dark disabled" ><?php echo $_SESSION['nombreUsuario']?></a></p>
+    <p><a  class="btn btn-block btn-dark disabled" ><?php echo $_SESSION['nombreUsuario'] ?></a></p>
     <p><a id="sigue1" class="btn btn-block btn-primary" onclick="sigue('1')">HISTORIA</a></p>
     <p><a id="sigue2" class="btn btn-block btn-primary" onclick="sigue('2')">ECONOMIA</a></p>
     <p><a id="sigue3" class="btn btn-block btn-primary" onclick="sigue('3')">FILOSOFIA</a></p>
