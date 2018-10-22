@@ -10,23 +10,21 @@
         <link href="css/CSS.css" rel="stylesheet" type="text/css"/>
         <form action="registro-usuario.php" method="post"> 
     </head>
-    <body style="background-color:  #9932CC; color:white; ">
+    <body style="background-color:  #138496; color:white; ">
 
 
         <div id="cabecera" style="width: 100%; height: 15%">
 
 
             <div style="height: 50%; width:25%; float: left; margin: 0.5%">
-                <div id="logo"> <p><a><img src="homer.png" alt="pensar" style="width:50%"></a></p></div>
+                <div id="logo" onclick="logearse();"> <p><a><img src="homer.png" alt="pensar" style="width:50%"></a></p></div>
             </div>
 
             <div style=" overflow: hidden; width: 52.4%; float: left; margin: 0.5%;" >
-                <div id="banner"><a class="btn btn-block btn-danger">BIENVENIDOS AL TRIVIAL DE LA EVAU2018</a></div>
+                <div id="banner"><a class="btn btn-block btn-danger">BIENVENIDOS AL REGISTRO DEL TRIVIAL</a></div>
             </div>
 
-            <div style="float: right; margin: 0.5%; width: 10%;">
-                <div id="registro"> <a class="btn btn-block btn-dark"><img src="registro.png" alt="pensar" style="width:10%;"></a></div>
-            </div>
+           
 
 
         </div>
@@ -51,7 +49,7 @@
                     <br/>
                     <input name="userPass" class="form-control" type="password" placeholder="Contraseña" required="required" style="text-align: center">
                     <br/>
-                    <a href="app.php"><button class="btn btn-primary btn-block" type="submit" name="submit">REGISTRATE</button></a>
+                    <button  class="btn btn-primary btn-block" type="submit" name="submit">REGISTRATE</button>
                     <br/><br/>
                 </div>
                 <div class="col-4">
@@ -59,9 +57,24 @@
             </div>
         </div>
     </body>
-    <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+    
+    <script>
+    
+     function logearse(){
+        $('#cabecera').hide();
+        $('#principal').load('login.php');
+    }
+    
+    
+    
+    </script>
+    
 
 </html>
+
+
+
+
+
 
 
