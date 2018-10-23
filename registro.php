@@ -37,7 +37,7 @@
             <br>
             <div class ="row">
                 <div class="col-12">
-                    <h2 class="text-center" style="color:white;">Bienvenidos</h2> 
+                    <h2 class="text-center" style="color:white;">REGISTRESE PARA ENTRAR</h2> 
                 </div>
             </div>
             <div class ="row">
