@@ -32,6 +32,11 @@ $preguntaActual = rand(0, $numPreguntas - 1);
 
     <p><a id="sigue1" class="btn btn-block btn-primary"><?php echo $tema; ?></a></p>
 
+    <div id="cajatiempo" style="height: 30px;" >
+        <div id="tiempo" class="progress-bar progress-bar-striped bg-success" style="width: 0%;"></div>
+    </div>
+    <p></p>
+
     <p><a id="enunciado" class="btn btn-block btn-primary"></a></p>
 
     <p><a id="r1" class="btn btn-block btn-success"></a></p>
@@ -44,6 +49,37 @@ $preguntaActual = rand(0, $numPreguntas - 1);
     function volver() {
         $('#principal').load('app.php');
     }
+
+    function iniciatTemp() {
+        var progreso;
+        var segundo = 0;
+        //temporizador de la barra
+        clearInterval(progreso);
+        progreso = setInterval(function () {
+            var caja = $("#cajatiempo");
+            var tiempo = $("#tiempo");
+            if (tiempo.width() >= caja.width()) {
+                clearInterval(progreso);
+                segundo = 0;
+            } else {
+                tiempo.width(tiempo.width() + caja.width() / 10);
+                segundo++;
+            }
+            //cambia el color de la barra dependiendo del segundo en que está
+            if (segundo < 5) {
+                tiempo.removeClass("bg-warning").removeClass("bg-danger").addClass("bg-success");
+            } else if (segundo < 8) {
+                tiempo.removeClass("bg-success").addClass("bg-warning");
+            } else {
+                tiempo.removeClass("bg-warning").addClass("bg-danger");
+            }
+            tiempo.text(segundo);
+        }, 900);
+    }
+
+
+
+
     //Cargo el array php de preguntas en una variable javascript
     var listaPreguntas = <?php echo json_encode($listaPreguntas); ?>;
     var numeroPregunta = Math.floor(Math.random() * listaPreguntas.length);
@@ -51,9 +87,17 @@ $preguntaActual = rand(0, $numPreguntas - 1);
     function sigue() {
         numeroPregunta = Math.floor(Math.random() * listaPreguntas.length);
         $('#enunciado').text(listaPreguntas[numeroPregunta][1]);
-        $('#r1').text(listaPreguntas[numeroPregunta][2]).click(function () {sigue();});
-        $('#r2').text(listaPreguntas[numeroPregunta][3]).click(function () {sigue();});
-        $('#r3').text(listaPreguntas[numeroPregunta][4]).click(function () {sigue();});
-        $('#r4').text(listaPreguntas[numeroPregunta][5]).click(function () {sigue();});
+        $('#r1').text(listaPreguntas[numeroPregunta][2]).click(function () {
+            sigue();
+        });
+        $('#r2').text(listaPreguntas[numeroPregunta][3]).click(function () {
+            sigue();
+        });
+        $('#r3').text(listaPreguntas[numeroPregunta][4]).click(function () {
+            sigue();
+        });
+        $('#r4').text(listaPreguntas[numeroPregunta][5]).click(function () {
+            sigue();
+        });
     }
 </script>
