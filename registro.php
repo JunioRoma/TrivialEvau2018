@@ -8,7 +8,7 @@
         <title>REGISTRATE PARA ENTRAR</title>
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="css/CSS.css" rel="stylesheet" type="text/css"/>
-        <form action="registro-usuario.php" method="post"> 
+    <form action="registro-usuario.php" method="post"> 
     </head>
     <body style="background-color:  #138496; color:white; ">
 
@@ -23,9 +23,6 @@
             <div style=" overflow: hidden; width: 52.4%; float: left; margin: 0.5%;" >
                 <div id="banner"><a class="btn btn-block btn-danger">BIENVENIDOS AL REGISTRO DEL TRIVIAL</a></div>
             </div>
-
-           
-
 
         </div>
 
@@ -57,18 +54,18 @@
             </div>
         </div>
     </body>
-    
+
     <script>
-    
-     function logearse(){
-        $('#cabecera').hide();
-        $('#principal').load('login.php');
-    }
-    
-    
-    
+
+        function logearse() {
+            $('#cabecera').hide();
+            $('#principal').load('login.php');
+        }
+
+
+
     </script>
-    
+
 
 </html>
 
