@@ -18,7 +18,7 @@ $tbl_name = "Usuarios";
 $form_pass = $_POST['userPass'];
 
 
-$hash = password_hash($form_pass, PASSWORD_BCRYPT);
+$hash = password_hash($form_pass, userPass);
 
 
 $conexion = new mysqli($host_db, $user_db, $pass_db, $db_name);
@@ -58,7 +58,7 @@ if ($count == 1) {
 
     $query = "INSERT INTO Usuarios (nombreUsuario, userPass)
 
-           VALUES ('$_POST[nombreUsuario]', '$hash')";
+           VALUES ('$_POST[nombreUsuario]', '$_POST[userPass]')";
 
 
 
