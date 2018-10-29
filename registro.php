@@ -17,7 +17,7 @@
 
 
             <div style="height: 50%; width:25%; float: left; margin: 0.5%">
-                <div id="logo" onclick="logearse();"> <p><a><img src="homer.png" alt="pensar" style="width:50%"></a></p></div>
+                <div id="logo" onclick="logearse();"> <p><a><img src="imagenes/homer.png" alt="pensar" style="width:50%"></a></p></div>
             </div>
 
             <div style=" overflow: hidden; width: 52.4%; float: left; margin: 0.5%;" >
