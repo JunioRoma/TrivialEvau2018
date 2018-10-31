@@ -25,34 +25,45 @@ for ($i = 0; $i < $numPreguntas; $i++) {
 $preguntaActual = rand(0, $numPreguntas - 1);
 ?>
 
-<div>
-    <p><a class="btn btn-block btn-dark disabled">DEMUESTRA QUE ESTAS LISTO PARA LA EVAU</a></p>
-    <p><a class="btn btn-block btn-dark disabled"><?php echo $_SESSION['nombreUsuario'] ?></a></p>
-    <p><a class="btn btn-block btn-warning" onclick="volver();">Volver al Menú</a></p>
+<div style="margin-top: 5%">
 
-    <p><a id="sigue1" class="btn btn-block btn-primary"><?php echo $tema; ?></a></p>
-    
-    <div id="cajatiempo" style="height: 30px;" >
-        <div id="tiempo" class="progress-bar progress-bar-striped bg-success" style="width: 0%;"></div>
+    <p><a id="sigue1" class="btn btn-block btn-dark" ><?php echo $tema; ?></a></p>
+
+    <div id="cajatiempo" style="height: 3%;" >
+        <div id="tiempo" class="progress-bar progress-bar-striped bg-success" style="width: 0.1%;"></div>
     </div>
     <p></p>
 
 
     <p><a id="enunciado" class="btn btn-block btn-primary"></a></p>
 
-    <p><a id="r1" class="btn btn-block btn-success"></a></p>
-    <p><a id="r2" class="btn btn-block btn-success"></a></p>
-    <p><a id="r3" class="btn btn-block btn-success"></a></p>
-    <p><a id="r4" class="btn btn-block btn-success"></a></p>
+    <p><a id="r1" class="btn btn-block btn-secondary" onclick="comprueba(1)"></a></p>
+    <p><a id="r2" class="btn btn-block btn-secondary" onclick="comprueba(2)"></a></p>
+    <p><a id="r3" class="btn btn-block btn-secondary" onclick="comprueba(3)"></a></p>
+    <p><a id="r4" class="btn btn-block btn-secondary" onclick="comprueba(4)"></a></p>
+</div>
+
+<div style="position: relative; width: 15%; height: 10%; margin-bottom: 2%; margin-right: 2%;">
+    <p><a class="btn btn-block btn-warning" onclick="volver();">Volver al Menú</a></p>
 </div>
 
 <script>
     function volver() {
+        $('#cabecera').show();
         $('#principal').load('app.php');
     }
-    
+
         var progreso;
         var segundo = 0;
+        inicioTemp();
+        
+        function tempboton(){
+            
+        }
+        
+        
+        
+        function inicioTemp() {
         //temporizador de la barra
         clearInterval(progreso);
         progreso = setInterval(function () {
@@ -75,10 +86,10 @@ $preguntaActual = rand(0, $numPreguntas - 1);
             }
             tiempo.text(segundo);
         }, 900);
-    
-    
-    
-    
+    }
+
+
+
     //Cargo el array php de preguntas en una variable javascript
     var listaPreguntas = <?php echo json_encode($listaPreguntas); ?>;
     var numeroPregunta = Math.floor(Math.random() * listaPreguntas.length);
@@ -86,9 +97,35 @@ $preguntaActual = rand(0, $numPreguntas - 1);
     function sigue() {
         numeroPregunta = Math.floor(Math.random() * listaPreguntas.length);
         $('#enunciado').text(listaPreguntas[numeroPregunta][1]);
-        $('#r1').text(listaPreguntas[numeroPregunta][2]).click(function () {sigue();});
-        $('#r2').text(listaPreguntas[numeroPregunta][3]).click(function () {sigue();});
-        $('#r3').text(listaPreguntas[numeroPregunta][4]).click(function () {sigue();});
-        $('#r4').text(listaPreguntas[numeroPregunta][5]).click(function () {sigue();});
+        
+        
+        $('#r1').text(listaPreguntas[numeroPregunta][2]).click(function () {
+            sigue();
+        });
+        $('#r2').text(listaPreguntas[numeroPregunta][3]).click(function () {
+            sigue();
+        });
+        $('#r3').text(listaPreguntas[numeroPregunta][4]).click(function () {
+            sigue();
+        });
+        $('#r4').text(listaPreguntas[numeroPregunta][5]).click(function () {
+            sigue();
+        });
     }
+    
+    function comprueba(numeroRespuesta){
+        var respuesta = listaPreguntas[numeroRespuesta][6];
+        
+        if(respuesta == numeroRespuesta){
+            sigue();
+            $('#r' + numeroRespuesta).removeClass('btn-secondary').addClass('btn-success');
+            
+        } else{
+            //vidas y boton rojo
+            $('#r' + numeroRespuesta).removeClass('btn-secondary').addClass('btn-danger');
+            $('#r' + respuesta).removeClass('btn-secondary').addClass('btn-success');
+        }
+    }
+    
+    $('#cabecera').hide();
 </script>

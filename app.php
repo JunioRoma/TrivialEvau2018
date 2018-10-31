@@ -1,14 +1,12 @@
-<div id ="menu" style="color:white; ">
+<div id ="menu" style="color:white;">
     <p></p>
     <p><a  onclick="muestraModalPrueba()" class="btn btn-block btn-dark " >Demuestra que estás listo para la EVAU</a></p>
-    <p><a  class="btn btn-block btn-dark disabled" ><?php echo $_SESSION['nombreUsuario'] ?></a></p>
-    <p><a id="sigue1" class="btn btn-block btn-primary" onclick="sigue('1')">HISTORIA</a></p>
-    <p><a id="sigue2" class="btn btn-block btn-primary" onclick="sigue('2')">ECONOMIA</a></p>
-    <p><a id="sigue3" class="btn btn-block btn-primary" onclick="sigue('3')">FILOSOFIA</a></p>
-    <p><a id="sigue4" class="btn btn-block btn-primary" onclick="sigue('4')">LENGUA Y LITERATURA</a></p>
-    <p><a id="sigue5" class="btn btn-block btn-primary" onclick="sigue('5')">INGLÉS</a></p>
+    <p><a id="sigue1" class="btn btn-block btn-warning" onclick="sigue('1')">HISTORIA</a></p>
+    <p><a id="sigue2" class="btn btn-block btn-success" onclick="sigue('2')">ECONOMIA</a></p>
+    <p><a id="sigue3" class="btn btn-block btn-secondary" onclick="sigue('3')">FILOSOFIA</a></p>
+    <p><a id="sigue4" class="btn btn-block btn-danger" onclick="sigue('4')">LENGUA Y LITERATURA</a></p>
+    <p><a id="sigue5" class="btn btn-block btn-info" onclick="sigue('5')">INGLÉS</a></p>
 </div>
-
 
 <script>
 
@@ -30,16 +28,16 @@
                 $("#menu").load("juego.php", {vidas: 3, correctas: 0, tema: "Ingles"});
                 break;
         }
-        
-        
-        function muestraModalPrueba(){
-        $('#modalPrueba').modal('show');
-    }
+
+
+//        function muestraModalPrueba(){
+//        $('#modalPrueba').modal('show');
+//    }
     }
 
 </script>
 
-
+<!--
 <div id="modalPrueba" class="modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -58,7 +56,7 @@
             </div>
         </div>
     </div>
-</div>
+</div>-->
 
 
 <?php
