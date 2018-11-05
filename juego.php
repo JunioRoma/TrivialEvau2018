@@ -53,17 +53,11 @@ $preguntaActual = rand(0, $numPreguntas - 1);
         $('#principal').load('app.php');
     }
 
-        var progreso;
-        var segundo = 0;
-        inicioTemp();
-        
-        function tempboton(){
-            
-        }
-        
-        
-        
-        function inicioTemp() {
+    var progreso;
+    var segundo = 0;
+    inicioTemp();
+
+    function inicioTemp() {
         //temporizador de la barra
         clearInterval(progreso);
         progreso = setInterval(function () {
@@ -88,6 +82,24 @@ $preguntaActual = rand(0, $numPreguntas - 1);
         }, 900);
     }
 
+    function detieneTemporizador() {
+        clearInterval(progreso);
+    }
+
+    function temporizadorOculto() {
+        var count = 3;
+        var number = document.getElementById('numero');
+        var intervalo = setInterval(function () {
+            count--;
+            number == count;
+            if (count == 0) {
+                clearInterval(intervalo);
+                sigue();
+                desOcultarPreguntas();
+            }
+        }, 1000);
+    }
+
 
 
     //Cargo el array php de preguntas en una variable javascript
@@ -97,35 +109,82 @@ $preguntaActual = rand(0, $numPreguntas - 1);
     function sigue() {
         numeroPregunta = Math.floor(Math.random() * listaPreguntas.length);
         $('#enunciado').text(listaPreguntas[numeroPregunta][1]);
-        
-        
-        $('#r1').text(listaPreguntas[numeroPregunta][2]).click(function () {
-            sigue();
+
+
+        $('#r1').text(listaPreguntas[numeroPregunta][2]).click(function (e) {
+            cambiaPregunta(e,1);
         });
-        $('#r2').text(listaPreguntas[numeroPregunta][3]).click(function () {
-            sigue();
+        $('#r2').text(listaPreguntas[numeroPregunta][3]).click(function (e) {
+            cambiaPregunta(e,2);
         });
-        $('#r3').text(listaPreguntas[numeroPregunta][4]).click(function () {
-            sigue();
+        $('#r3').text(listaPreguntas[numeroPregunta][4]).click(function (e) {
+            cambiaPregunta(e,3);
         });
-        $('#r4').text(listaPreguntas[numeroPregunta][5]).click(function () {
-            sigue();
+        $('#r4').text(listaPreguntas[numeroPregunta][5]).click(function (e) {
+            cambiaPregunta(e,4);
         });
     }
-    
-    function comprueba(numeroRespuesta){
+
+
+    function comprueba(numeroRespuesta) {
         var respuesta = listaPreguntas[numeroRespuesta][6];
-        
-        if(respuesta == numeroRespuesta){
+
+        if (respuesta == numeroRespuesta) {
             sigue();
             $('#r' + numeroRespuesta).removeClass('btn-secondary').addClass('btn-success');
-            
-        } else{
+            ocultarPreguntas();
+        } else {
             //vidas y boton rojo
             $('#r' + numeroRespuesta).removeClass('btn-secondary').addClass('btn-danger');
             $('#r' + respuesta).removeClass('btn-secondary').addClass('btn-success');
+            ocultarPreguntas();
+        }
+        avisoProgramado();
+    }
+
+    function cambiaPregunta(e, num) {
+        e.stopImmediatePropagation();
+        var correcta = listaPreguntas[numeroPregunta][6];
+        //deshabilita los clicks en los botones
+        $("[id*='resp']").prop("onclick", null).off("click");
+        //agrega el click al boton que se ha pulsado, para seguir la partida
+        $("#resp" + num).click(function (e) {
+            e.stopImmediatePropagation();
+            sigue();
+        });
+        detieneTemporizador();
+        if (num == correcta) {
+            //cambia a gris las respuestas incorrectas   
+            $("[id*='resp']").removeClass("btn-success").addClass("btn-secondary");
+            //, y a verde la correcta 
+            $("#resp" + num).removeClass("btn-danger").addClass("btn-success");
+            $("#resp" + num).append("   CORRECTO! pulsa para seguir");
+        } else {
+            $("[id*='resp']").removeClass("btn-success").addClass("btn-danger");
+            $("#resp" + num).removeClass("btn-danger").addClass("btn-dark").append("   INCORRECTO! pulsa para seguir");
+            $("#resp" + correcta).removeClass("btn-danger").addClass("btn-success");
         }
     }
-    
+
+    function ocultarPreguntas() {
+        $('#r1').removeClass('btn-secondary').addClass('disabled');
+        $('#r2').removeClass('btn-secondary').addClass('disabled');
+        $('#r3').removeClass('btn-secondary').addClass('disabled');
+        $('#r4').removeClass('btn-secondary').addClass('disabled');
+    }
+
+    function desOcultarPreguntas() {
+        $('#r1').removeClass('disabled').addClass('btn-secondary');
+        $('#r2').removeClass('disabled').addClass('btn-secondary');
+        $('#r3').removeClass('disabled').addClass('btn-secondary');
+        $('#r4').removeClass('disabled').addClass('btn-secondary');
+    }
+
+    function avisoProgramado() {
+        setTimeout(function () {
+            sigue();
+        }, 3000);
+    }
+
     $('#cabecera').hide();
 </script>
