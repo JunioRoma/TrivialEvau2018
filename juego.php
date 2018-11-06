@@ -59,6 +59,8 @@ $preguntaActual = rand(0, $numPreguntas - 1);
 
     function inicioTemp() {
         //temporizador de la barra
+        segundo = 0;
+       $("#tiempo").width(1).text("");
         clearInterval(progreso);
         progreso = setInterval(function () {
             var caja = $("#cajatiempo");
@@ -85,16 +87,22 @@ $preguntaActual = rand(0, $numPreguntas - 1);
     function detieneTemporizador() {
         clearInterval(progreso);
     }
+    function reiniciaTemporizador(){
+        
+    }
 
     function temporizadorOculto() {
-        var count = 3;
+        var count = 10;
         var number = document.getElementById('numero');
         var intervalo = setInterval(function () {
             count--;
             number == count;
             if (count == 0) {
                 clearInterval(intervalo);
+                alert("Se te acabó el tiempo CRUCK!");
                 sigue();
+                reiniciaTemporizador();
+                inicioTemp();
                 desOcultarPreguntas();
             }
         }, 1000);
@@ -108,20 +116,21 @@ $preguntaActual = rand(0, $numPreguntas - 1);
     sigue();
     function sigue() {
         numeroPregunta = Math.floor(Math.random() * listaPreguntas.length);
+        inicioTemp();
         $('#enunciado').text(listaPreguntas[numeroPregunta][1]);
 
 
         $('#r1').text(listaPreguntas[numeroPregunta][2]).click(function (e) {
-            cambiaPregunta(e,1);
+            cambiaPregunta(e, 1);
         });
         $('#r2').text(listaPreguntas[numeroPregunta][3]).click(function (e) {
-            cambiaPregunta(e,2);
+            cambiaPregunta(e, 2);
         });
         $('#r3').text(listaPreguntas[numeroPregunta][4]).click(function (e) {
-            cambiaPregunta(e,3);
+            cambiaPregunta(e, 3);
         });
         $('#r4').text(listaPreguntas[numeroPregunta][5]).click(function (e) {
-            cambiaPregunta(e,4);
+            cambiaPregunta(e, 4);
         });
     }
 
@@ -130,7 +139,7 @@ $preguntaActual = rand(0, $numPreguntas - 1);
         var respuesta = listaPreguntas[numeroRespuesta][6];
 
         if (respuesta == numeroRespuesta) {
-            sigue();
+            cambiaPregunta();
             $('#r' + numeroRespuesta).removeClass('btn-secondary').addClass('btn-success');
             ocultarPreguntas();
         } else {
@@ -139,33 +148,38 @@ $preguntaActual = rand(0, $numPreguntas - 1);
             $('#r' + respuesta).removeClass('btn-secondary').addClass('btn-success');
             ocultarPreguntas();
         }
-        avisoProgramado();
     }
 
     function cambiaPregunta(e, num) {
-        e.stopImmediatePropagation();
         var correcta = listaPreguntas[numeroPregunta][6];
         //deshabilita los clicks en los botones
-        $("[id*='resp']").prop("onclick", null).off("click");
         //agrega el click al boton que se ha pulsado, para seguir la partida
         $("#resp" + num).click(function (e) {
             e.stopImmediatePropagation();
             sigue();
+            desOcultarPreguntas();
         });
         detieneTemporizador();
-        if (num == correcta) {
-            //cambia a gris las respuestas incorrectas   
-            $("[id*='resp']").removeClass("btn-success").addClass("btn-secondary");
-            //, y a verde la correcta 
-            $("#resp" + num).removeClass("btn-danger").addClass("btn-success");
-            $("#resp" + num).append("   CORRECTO! pulsa para seguir");
-        } else {
-            $("[id*='resp']").removeClass("btn-success").addClass("btn-danger");
-            $("#resp" + num).removeClass("btn-danger").addClass("btn-dark").append("   INCORRECTO! pulsa para seguir");
-            $("#resp" + correcta).removeClass("btn-danger").addClass("btn-success");
+        if(num == correcta){
+            temporizadorOcultoDos();
+        }else{
+            temporizadorOcultoDos();
         }
     }
 
+    function quitarColorBoton(){
+        $('#r1').removeClass('btn-success').addClass('btn-secondary');
+        $('#r2').removeClass('btn-success').addClass('btn-secondary');
+        $('#r3').removeClass('btn-success').addClass('btn-secondary');
+        $('#r4').removeClass('btn-success').addClass('btn-secondary');
+        
+        $('#r1').removeClass('btn-danger').addClass('btn-secondary');
+        $('#r2').removeClass('btn-danger').addClass('btn-secondary');
+        $('#r3').removeClass('btn-danger').addClass('btn-secondary');
+        $('#r4').removeClass('btn-danger').addClass('btn-secondary');
+    } 
+    
+    
     function ocultarPreguntas() {
         $('#r1').removeClass('btn-secondary').addClass('disabled');
         $('#r2').removeClass('btn-secondary').addClass('disabled');
@@ -179,12 +193,21 @@ $preguntaActual = rand(0, $numPreguntas - 1);
         $('#r3').removeClass('disabled').addClass('btn-secondary');
         $('#r4').removeClass('disabled').addClass('btn-secondary');
     }
-
-    function avisoProgramado() {
-        setTimeout(function () {
-            sigue();
-        }, 3000);
+    
+     function temporizadorOcultoDos() {
+        var count = 3;
+        var number = document.getElementById('numero');
+        var intervalo = setInterval(function () {
+            count--;
+            number == count;
+            if (count == 0) {
+                clearInterval(intervalo);
+                sigue();
+                quitarColorBoton();
+                desOcultarPreguntas();
+            }
+        }, 1000);
     }
-
+    
     $('#cabecera').hide();
 </script>
