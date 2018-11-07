@@ -69,7 +69,7 @@ $preguntaActual = rand(0, $numPreguntas - 1);
                 clearInterval(progreso);
                 segundo = 0;
             } else {
-                tiempo.width(tiempo.width() + caja.width() / 10);
+                tiempo.width(tiempo.width() + caja.width() / 10.1);
                 segundo++;
             }
             //cambia el color de la barra dependiendo del segundo en que está
@@ -80,6 +80,13 @@ $preguntaActual = rand(0, $numPreguntas - 1);
             } else {
                 tiempo.removeClass("bg-warning").addClass("bg-danger");
             }
+            
+            if(segundo > 10){
+                alert("Se te acabó el tiempo CRUCK!");
+                sigue();
+                quitarColorBoton();
+                desOcultarPreguntas();
+            }
             tiempo.text(segundo);
         }, 900);
     }
@@ -87,29 +94,7 @@ $preguntaActual = rand(0, $numPreguntas - 1);
     function detieneTemporizador() {
         clearInterval(progreso);
     }
-    function reiniciaTemporizador(){
-        
-    }
-
-    function temporizadorOculto() {
-        var count = 10;
-        var number = document.getElementById('numero');
-        var intervalo = setInterval(function () {
-            count--;
-            number == count;
-            if (count == 0) {
-                clearInterval(intervalo);
-                alert("Se te acabó el tiempo CRUCK!");
-                sigue();
-                reiniciaTemporizador();
-                inicioTemp();
-                desOcultarPreguntas();
-            }
-        }, 1000);
-    }
-
-
-
+    
     //Cargo el array php de preguntas en una variable javascript
     var listaPreguntas = <?php echo json_encode($listaPreguntas); ?>;
     var numeroPregunta = Math.floor(Math.random() * listaPreguntas.length);
