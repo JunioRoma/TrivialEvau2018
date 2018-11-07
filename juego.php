@@ -43,7 +43,11 @@ $preguntaActual = rand(0, $numPreguntas - 1);
     <p><a id="r4" class="btn btn-block btn-secondary" onclick="comprueba(4)"></a></p>
 </div>
 
-<div style="position: relative; width: 15%; height: 10%; margin-bottom: 2%; margin-right: 2%;">
+<div style="position: relative; width: 15%; height: 10%;">
+    <p><a id="vidas" class="btn btn-block btn-success" >Vidas:  <?php echo $vidas; ?></a></p>
+</div>
+
+<div style="position: relative; width: 20%; height: 10%; margin-bottom: 2%; margin-right: 2%;">
     <p><a class="btn btn-block btn-warning" onclick="volver();">Volver al Menú</a></p>
 </div>
 
@@ -56,15 +60,15 @@ $preguntaActual = rand(0, $numPreguntas - 1);
     var progreso;
     var segundo = 0;
     inicioTemp();
-
     function inicioTemp() {
         //temporizador de la barra
         segundo = 0;
-       $("#tiempo").width(1).text("");
+        $("#tiempo").width(1).text("");
         clearInterval(progreso);
         progreso = setInterval(function () {
             var caja = $("#cajatiempo");
             var tiempo = $("#tiempo");
+
             if (tiempo.width() >= caja.width()) {
                 clearInterval(progreso);
                 segundo = 0;
@@ -80,12 +84,19 @@ $preguntaActual = rand(0, $numPreguntas - 1);
             } else {
                 tiempo.removeClass("bg-warning").addClass("bg-danger");
             }
-            
-            if(segundo > 10){
+
+            if (segundo > 10) {
                 alert("Se te acabó el tiempo CRUCK!");
+                _vidas--;
+                $('#vidas').text('Vidas:  ' + _vidas);
                 sigue();
                 quitarColorBoton();
                 desOcultarPreguntas();
+                cambiarColorVidas();
+            }
+            if (_vidas < 1) {
+                temporizadorOcultoDos();
+                clearInterval(progreso);
             }
             tiempo.text(segundo);
         }, 900);
@@ -94,7 +105,7 @@ $preguntaActual = rand(0, $numPreguntas - 1);
     function detieneTemporizador() {
         clearInterval(progreso);
     }
-    
+
     //Cargo el array php de preguntas en una variable javascript
     var listaPreguntas = <?php echo json_encode($listaPreguntas); ?>;
     var numeroPregunta = Math.floor(Math.random() * listaPreguntas.length);
@@ -120,6 +131,8 @@ $preguntaActual = rand(0, $numPreguntas - 1);
     }
 
 
+
+
     function comprueba(numeroRespuesta) {
         var respuesta = listaPreguntas[numeroRespuesta][6];
 
@@ -129,9 +142,11 @@ $preguntaActual = rand(0, $numPreguntas - 1);
             ocultarPreguntas();
         } else {
             //vidas y boton rojo
+            _vidas--;
             $('#r' + numeroRespuesta).removeClass('btn-secondary').addClass('btn-danger');
             $('#r' + respuesta).removeClass('btn-secondary').addClass('btn-success');
             ocultarPreguntas();
+            $('#vidas').text('Vidas:  ' + _vidas);
         }
     }
 
@@ -145,26 +160,26 @@ $preguntaActual = rand(0, $numPreguntas - 1);
             desOcultarPreguntas();
         });
         detieneTemporizador();
-        if(num == correcta){
+        if (num == correcta) {
             temporizadorOcultoDos();
-        }else{
+        } else {
             temporizadorOcultoDos();
         }
     }
 
-    function quitarColorBoton(){
+    function quitarColorBoton() {
         $('#r1').removeClass('btn-success').addClass('btn-secondary');
         $('#r2').removeClass('btn-success').addClass('btn-secondary');
         $('#r3').removeClass('btn-success').addClass('btn-secondary');
         $('#r4').removeClass('btn-success').addClass('btn-secondary');
-        
+
         $('#r1').removeClass('btn-danger').addClass('btn-secondary');
         $('#r2').removeClass('btn-danger').addClass('btn-secondary');
         $('#r3').removeClass('btn-danger').addClass('btn-secondary');
         $('#r4').removeClass('btn-danger').addClass('btn-secondary');
-    } 
-    
-    
+    }
+
+
     function ocultarPreguntas() {
         $('#r1').removeClass('btn-secondary').addClass('disabled');
         $('#r2').removeClass('btn-secondary').addClass('disabled');
@@ -178,8 +193,8 @@ $preguntaActual = rand(0, $numPreguntas - 1);
         $('#r3').removeClass('disabled').addClass('btn-secondary');
         $('#r4').removeClass('disabled').addClass('btn-secondary');
     }
-    
-     function temporizadorOcultoDos() {
+
+    function temporizadorOcultoDos() {
         var count = 3;
         var number = document.getElementById('numero');
         var intervalo = setInterval(function () {
@@ -191,8 +206,29 @@ $preguntaActual = rand(0, $numPreguntas - 1);
                 quitarColorBoton();
                 desOcultarPreguntas();
             }
+            if (_vidas < 1) {
+                $('#principal').load("app.php");
+            }
         }, 1000);
+    }
+    
+    function muestraModalTiempo(){
+       $('#modalTiempo').modal('show');
     }
     
     $('#cabecera').hide();
 </script>
+<div id="modalTiempo" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Ejemplo Modal</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>JE PAISA SUR MANO TE COMPRO GASOFA MA MI BUGA</p>
+            </div>
+        </div>
+    </div>
