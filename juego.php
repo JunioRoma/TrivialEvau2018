@@ -207,28 +207,11 @@ $preguntaActual = rand(0, $numPreguntas - 1);
                 desOcultarPreguntas();
             }
             if (_vidas < 1) {
+                alert("Has perdido! Pulsa aceptar para renaudar la partida");
                 $('#principal').load("app.php");
             }
         }, 1000);
     }
     
-    function muestraModalTiempo(){
-       $('#modalTiempo').modal('show');
-    }
-    
     $('#cabecera').hide();
 </script>
-<div id="modalTiempo" class="modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Ejemplo Modal</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>JE PAISA SUR MANO TE COMPRO GASOFA MA MI BUGA</p>
-            </div>
-        </div>
-    </div>
